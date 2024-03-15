@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SkalProj_Datastrukturer_Minne
+namespace MinneAssignLexicon
 {
     class Program
     {
@@ -35,13 +35,13 @@ namespace SkalProj_Datastrukturer_Minne
                         ExamineList();
                         break;
                     case '2':
-                        ExamineQueue();
+                        //ExamineQueue();
                         break;
                     case '3':
-                        ExamineStack();
+                        //ExamineStack();
                         break;
                     case '4':
-                        CheckParanthesis();
+                        //CheckParanthesis();
                         break;
                     /*
                      * Extend the menu to include the recursive 
@@ -72,12 +72,35 @@ namespace SkalProj_Datastrukturer_Minne
              * Below you can see some inspirational code to begin working.
             */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
-
-            //switch(nav){...}
+            List<string> theList = new List<string>();
+            bool exit = false;
+            while (exit == false)
+            {
+                Console.WriteLine("To add to list please put a + before item, do remove from list please put a - before item. To exit please input e");
+                string input = Console.ReadLine();
+                char nav = input[0];
+                string value = input.Substring(1);
+                switch(nav)
+                {
+                    case '+':
+                        theList.Add(value);
+                        foreach (var item in theList)
+                        {
+                            Console.WriteLine(item);    
+                        }
+                        break;
+                    case '-':
+                        theList.Remove(value);
+                        foreach (var item in theList)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        break;
+                    case 'e':
+                        exit = true;
+                        break;
+                }
+            }
         }
 
         /// <summary>
