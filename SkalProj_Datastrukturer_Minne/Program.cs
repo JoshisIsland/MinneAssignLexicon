@@ -62,15 +62,13 @@ namespace MinneAssignLexicon
         /// </summary>
         static void ExamineList()
         {
-            /*
-             * Loop this method untill the user inputs something to exit to main menue.
-             * Create a switch statement with cases '+' and '-'
-             * '+': Add the rest of the input to the list (The user could write +Adam and "Adam" would be added to the list)
-             * '-': Remove the rest of the input from the list (The user could write -Adam and "Adam" would be removed from the list)
-             * In both cases, look at the count and capacity of the list
-             * As a default case, tell them to use only + or -
-             * Below you can see some inspirational code to begin working.
-            */
+
+            /*  F:
+             *  Listans kapacitet ökar med 4 efter de första 4 är fyllda (dubblerar)
+             *  Anledningen till att listan inte ökar i storlek efter varje tillägg är för att vid varje ökning av listan görs en ny lista som existrande lista kopieras till.
+             *  Detta tar upp prestande och minne och skulle vara oeffektivt att göra vid varje tillägg.
+             *  Listan minskar inte i kapacitet vid minskning av listelement. En array är fördelaktig när man vet storleken i förväg och innehållet ej ändras.
+             */
 
             List<string> theList = new List<string>();
             bool exit = false;
@@ -80,14 +78,15 @@ namespace MinneAssignLexicon
                 string input = Console.ReadLine();
                 char nav = input[0];
                 string value = input.Substring(1);
-                switch(nav)
+                switch (nav)
                 {
                     case '+':
                         theList.Add(value);
                         foreach (var item in theList)
                         {
-                            Console.WriteLine(item);    
+                            Console.WriteLine(item);   
                         }
+                        Console.WriteLine("Count: " + theList.Count + " Capacity: " + theList.Capacity);
                         break;
                     case '-':
                         theList.Remove(value);
@@ -95,6 +94,7 @@ namespace MinneAssignLexicon
                         {
                             Console.WriteLine(item);
                         }
+                        Console.WriteLine("Count: " + theList.Count + " Capacity: " + theList.Capacity);
                         break;
                     case 'e':
                         exit = true;
