@@ -39,15 +39,11 @@ namespace MinneAssignLexicon
                         ExamineQueue();
                         break;
                     case '3':
-                        //ExamineStack();
+                        ExamineStack();
                         break;
                     case '4':
                         //CheckParanthesis();
                         break;
-                    /*
-                     * Extend the menu to include the recursive 
-                     * and iterative exercises.
-                     */
                     case '0':
                         Environment.Exit(0);
                         break;
@@ -152,11 +148,40 @@ namespace MinneAssignLexicon
         /// </summary>
         static void ExamineStack()
         {
-            /*
-             * Loop this method until the user inputs something to exit to main menue.
-             * Create a switch with cases to push or pop items
-             * Make sure to look at the stack after pushing and and poping to see how it behaves
-            */
+            Stack<string> customers = new Stack<string>();
+            customers.Push("Kalle");
+            customers.Push("Greta");
+            bool exit = false;
+            while (exit == false)
+            {
+                Console.WriteLine("Kalle and Greta are already in the stack, \n" +
+                    "to add customers to the stack please put a + before the customers name, \n" +
+                    "to remove the last person from the stack please press -. To exit please input e");
+                string input = Console.ReadLine();
+                char nav = input[0];
+                string value = input.Substring(1);
+                switch (nav)
+                {
+                    case '+':
+                        customers.Push(value);
+                        foreach (string customer in customers)
+                        {
+                            Console.WriteLine(customer);
+                        }
+                        break;
+                    case '-':
+                        customers.Pop();
+                        foreach (string customer in customers)
+                        {
+                            Console.WriteLine(customer);
+                        }
+                        break;
+                    case 'e':
+                        exit = true;
+                        break;
+                }
+            }
+
         }
 
         static void CheckParanthesis()
