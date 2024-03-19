@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 
 namespace MinneAssignLexicon
 {
@@ -35,7 +36,7 @@ namespace MinneAssignLexicon
                         ExamineList();
                         break;
                     case '2':
-                        //ExamineQueue();
+                        ExamineQueue();
                         break;
                     case '3':
                         //ExamineStack();
@@ -74,7 +75,8 @@ namespace MinneAssignLexicon
             bool exit = false;
             while (exit == false)
             {
-                Console.WriteLine("To add to list please put a + before item, do remove from list please put a - before item. To exit please input e");
+                Console.WriteLine("To add to list please put a + before item, \n" +
+                    "to remove from list please put a - before item. To exit please input e");
                 string input = Console.ReadLine();
                 char nav = input[0];
                 string value = input.Substring(1);
@@ -108,11 +110,41 @@ namespace MinneAssignLexicon
         /// </summary>
         static void ExamineQueue()
         {
-            /*
-             * Loop this method untill the user inputs something to exit to main menue.
-             * Create a switch with cases to enqueue items or dequeue items
-             * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
-            */
+            Queue<string> customers = new Queue<string>();
+            customers.Enqueue("Kalle");
+            customers.Enqueue("Greta");
+            bool exit = false;
+            while (exit == false)
+            {
+                Console.WriteLine("Kalle and Greta are already queueing, \n" +
+                    "to add customers to the queue please put a + before the customers name, \n" +
+                    "to remove the first person from queue please press -. To exit please input e");
+                string input = Console.ReadLine();
+                char nav = input[0];
+                string value = input.Substring(1);
+            
+                switch (nav)
+                {
+                    case '+':
+                        customers.Enqueue(value);
+                        foreach (string customer in customers)
+                        {
+                            Console.WriteLine(customer);
+                        }
+                        break;
+                    case '-':
+                        customers.Dequeue();
+                        foreach (string customer in customers)
+                        {
+                            Console.WriteLine(customer);
+                        }
+                        break;
+                    case 'e':
+                        exit = true;
+                        break;
+                }
+            }
+
         }
 
         /// <summary>
